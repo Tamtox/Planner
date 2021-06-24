@@ -1,0 +1,23 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#schedule{
+    height: 100%;
+    display: grid;
+    grid-template: 10% 90% / 100% ;
+    #daySelectContainer{
+        @include flex(center,center);
+        #selectDay{
+            margin-right:1% ;
+        }
+        #addNewScheduleEntry{
+            margin-left:1% ;
+        }
+    }
+    #scheduleContainer{
+        border: solid 1px black;
+    }
+
+}

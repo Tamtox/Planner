@@ -1,0 +1,123 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#toDo{
+    @include flex(center,center);
+    flex-direction: column;
+    height: 100%;
+    #toDoControls{
+        height: 10%;
+        width: 80rem;
+        max-width: 95%;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-items: center;
+        align-items: end;
+        #searchTodo{
+            width: 100%;
+            height: 3rem;
+            font-size: 1.5rem;
+            border-radius: 5px;
+        }
+    }
+    #toDoList{
+        height: 90%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,40rem);
+        grid-auto-rows: 8em;
+        gap: 10% 2%;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: 3% 1% 0% 1%;
+        .hidden{
+            height: 10%;
+            visibility: hidden
+        }
+    }
+}
+// Media queries
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    #toDo{
+        #toDoControls{
+            width: 33rem;
+            max-width: 95%;
+            height: 20%;
+            @include flex(space-around,center );
+            flex-wrap: wrap;
+            #searchTodo{
+                order: -1;
+                width: 100%;
+            }
+            #newTodoLink{
+                @include flex(center,center);
+            }
+        }
+        #toDoList{
+            height: 80%;
+            grid-template-columns: 1fr;
+            grid-auto-rows: 10em;
+        }
+    }
+
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    #toDo{
+        #toDoControls{
+            width: 45rem;
+            height: 20%;
+            @include flex(space-around,center );
+            flex-wrap: wrap;
+            #searchTodo{
+                order: -1;
+                width: 100%;
+            }
+            #newTodoLink{
+                @include flex(center,center);
+            }
+        }
+        #toDoList{
+            height: 80%;
+            grid-template-columns: minmax(40rem,80%);
+            grid-auto-rows: 9em;
+        }
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 992px) {
+    #toDo{
+        #toDoControls{
+            width: 45rem;
+            height: 20%;
+            @include flex(space-around,center );
+            flex-wrap: wrap;
+            #searchTodo{
+                order: -1;
+                width: 100%;
+            }
+            #newTodoLink{
+                @include flex(center,center);
+            }
+        }
+        #toDoList{
+            height: 80%;
+            grid-template-columns: minmax(40rem,70%);
+        }
+    }
+}
+@media only screen and (min-width: 993px) and (max-width: 1200px) {
+    #toDo{
+        #toDoList{
+            grid-template-columns: repeat(2,1fr);
+        }
+    }
+}
+@media only screen and (min-width: 1201px) and (max-width: 1400px) {
+    #toDo{
+        #toDoList{
+            grid-template-columns: repeat(2,minmax(40rem,50%));
+        }
+    }
+}

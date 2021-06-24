@@ -1,0 +1,11 @@
+#notFound{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    #notFoundIcon{
+        margin-top: 3%;
+        font-size: 5rem;
+    }
+}
