@@ -9,9 +9,9 @@
     #authCard{
         width: 35rem;
         max-width: 95%;
-        height: 80%;
+        height: 70%;
         display: grid;
-        grid-template: 20% 60% 20% / 100% ;
+        grid-template: 20% 65% 15% / 100% ;
         justify-items: center;
         align-items: center;
         background: radial-gradient(circle, rgb(0, 153, 255) 0%, rgb(0, 90, 199) 100%);
@@ -28,14 +28,14 @@
             align-items: center;
             .authInput{
                 width: 100%;
-                height: 40%;
-                font-size: 1.5rem;
+                height: 3rem;
+                font-size: 1.3rem;
                 border-radius: 5px;
+                padding: 3%;
             }
             #authButton{
                 width: 50%;
-                height: 40%;
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 background-color: white;
             }
             .login{
@@ -46,7 +46,7 @@
             }
         }
         #authSwitch{
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             background: none;
             color: white;
             border: none;

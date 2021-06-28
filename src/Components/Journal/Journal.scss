@@ -8,7 +8,7 @@
     @include flex(center,center);
     #journalCard{
         height: 90%;
-        width: 50rem;
+        width: 45rem;
         display: grid;
         grid-template: 10% 90% / 100%;
         justify-items: center;
@@ -36,7 +36,7 @@
             #journalEntry{
                 width: 90%;
                 height: 90%;
-                font-size: 1.3rem;
+                font-size: 1.1rem;
                 border-radius: 5px;
                 padding: 1%;   
             }

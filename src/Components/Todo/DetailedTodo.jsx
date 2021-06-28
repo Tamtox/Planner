@@ -1,6 +1,6 @@
 import {useSelector,useDispatch} from 'react-redux';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/airbnb.css";
 import {Fragment,useRef,useState} from 'react';
 import { Prompt } from 'react-router';
 import axios from 'axios';
@@ -71,13 +71,11 @@ function DetailedTodo(props) {
             <section id='detailedTodo'>
                 <form action="" id="detailedToDoForm" onSubmit={editTodo} onFocus={formFocus}>
                     <div id='detailedDates'>
-                        <DatePicker 
-                        id='datePicker' 
-                        selected={startDate} 
-                        onChange={(date) => datePick(date)}  
-                        showYearDropdown showMonthDropdown showTimeSelect 
-                        timeFormat="H:mm" timeIntervals={10} 
-                        dateFormat=" dd/MM/yyy H:mm " minDate={new Date()}
+                        <Flatpickr
+                            id='datePicker'
+                            options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true }}
+                            value={startDate}
+                            onChange={date => {datePick(date);}}
                         />
                     </div>
                     <input ref={titleRef} type="text" id="detailedTitle" placeholder='Title' defaultValue={detailedItem!==undefined?detailedItem.title:''} required />

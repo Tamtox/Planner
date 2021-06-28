@@ -10,53 +10,31 @@
     padding: 2%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     .toDoItemTitle{
-        @include flex(space-around,center);
-        font-size: 1.5rem;
-        grid-area: 1 / 1 / span 5 / span 7;
-    }
-    .toDoItemCreationDate{
         @include flex(center,center);
-        flex-direction: column;
-        grid-area: 7 / 1 / span 4 / span 5;
-    }
-    .toDoItemTargetDate{
-        @include flex(center,center);
-        flex-direction: column;
-        grid-area: 7 / 6 / span 4 / span 5;
+        font-size: 1.3rem;
+        grid-area: 3 / 1 / span 10 / span 10;
     }
     .todoItemIcons{
         @include flex(space-around,center);
-        grid-area: 1 / 8 / span 5 / span 3;
+        grid-area: 1 / 8 / span 3 / span 4; 
         .linkToDetailedTodo{
             .iconToDetailedTodo{
                 color: royalblue;
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
         }
         .deleteTodoIcon{
-            font-size: 2.5rem;
-            color: red;
+            font-size: 2rem;
+            color: black;
         }
         .changeTodoStatusIcon{
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         .Pending{
-            color: black;
+            color: orange;
         }
         .Complete{
             color: green;
         }
     }
-}
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-
-}
-@media only screen and (min-width: 769px) and (max-width: 992px) {
-
-}
-@media only screen and (min-width: 993px) and (max-width: 1200px) {
-
-}
-@media only screen and (min-width: 1201px) and (max-width: 1400px) {
-
 }

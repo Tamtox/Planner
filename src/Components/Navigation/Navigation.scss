@@ -31,6 +31,7 @@
             background-color: rgb(16, 113, 231);
             height: 40%;
             width: 17rem;
+            max-width: 45%;
             top: 8.5%;
             left: 1%;
             animation: 0.5s ease-in-out 0s 1 fadeIn;
@@ -63,6 +64,7 @@
             background-color: rgb(16, 113, 231);
             height: 25%;
             width: 17rem;
+            max-width: 45%;
             top: 8.5%;
             right: 3%;
             animation: 0.5s ease-in-out 0s 1 fadeIn;
@@ -98,19 +100,6 @@
         #title{
             grid-area: 1 / 2 / span 1 / span 1;
         }
-        #navLinksMenu{
-            #navIcon{
-                font-size: 2rem;
-            }
-        }
-        #authMenu{
-            #authIcon{
-                font-size: 2rem;
-            }
-            #authLinksSlide{
-                right: 1%;
-            }
-        }
     }
 }
 @media only screen and (min-width: 481px) and (max-width: 768px) {
@@ -118,17 +107,14 @@
         #title{
             grid-area: 1 / 2 / span 1 / span 1;
         }
-        #authMenu{
-            #authLinksSlide{
-                right: 1%;
-            }
-        }
     }
 }
 @media only screen and (min-width: 769px) and (max-width: 992px) {
     #navigation{
         #title{
-            font-size: 1.3rem;
+            #title{
+                grid-area: 1 / 2 / span 1 / span 1;
+            }
         }
         #authMenu{
             #authLinksSlide{

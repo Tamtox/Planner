@@ -20,7 +20,7 @@ function Navigation(props) {
     // Set different navlinks based on window width
     let navLinks 
     const windowMoreThan = useMediaQuery({
-        query: '(max-device-width: 768px)'
+        query: '(max-device-width: 992px)'
     })
     // Toggle hamburger menu
     let [navLinksMenu,setNavLinksMenu] = useState(false);

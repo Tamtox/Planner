@@ -7,50 +7,34 @@
     height: 100%;
     @include flex(center,center);
     #profileCard{
-        width: 50%;
-        height: 90%;
+        width: 50rem;
+        max-width: 95%;
+        height: 70%;
         display: grid;
-        grid-template: 20% 20% 20% 40% / 100% ;
+        grid-template: 15% 15% 15% 55% / 100% ;
         justify-items: center;
         align-items: center;
-        #email{
-            font-size: 1.5rem;
+        padding: 2% 1% 0 1%;
+        .profileItems{
+            font-size: 1.2rem;
         }
         #passwordChangeForm{
             width: 80%;
-            height: 60%;
+            height: 100%;
             display: grid;
-            grid-template: 50% 50% / repeat(10,10%) ;
+            grid-template: repeat(3,33,33%) / 100% ;
             justify-items: center;
-            align-content: center;
+            align-content: space-around;
             #passwordChangeTitle{
-                grid-area: 1 / 1 / span 1 / span 10;
             }
             #passwordChangeInput{
                 width: 95%;
-                height: 50%;
-                grid-area: 2 / 1 / span 1 / span 7;
-                font-size: 1.5rem;
+                height: 3rem;
+                font-size: 1.2rem;
             }
             #passwordChangeButton{
-                width: 90%;
-                height: 50%;    
-                grid-area: 2 / 8 / span 1 / span 3;
-                font-size: 1.5rem;
-                background: none;
-                border: solid black 1px;
-                border-radius: 5px;
             }
         }
     }
 
-}
-
-@media only screen and (min-width: 320px) and (max-width: 480px) {
-}
-@media only screen and (min-width: 481px) and (max-width: 768px) {
-}
-@media only screen and (min-width: 769px) and (max-width: 992px) {
-}
-@media only screen and (min-width: 993px) and (max-width: 1200px) {
 }

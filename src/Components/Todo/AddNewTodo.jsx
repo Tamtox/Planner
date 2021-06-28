@@ -1,5 +1,5 @@
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/airbnb.css";
 import {useDispatch} from 'react-redux';
 import {Fragment,useRef,useState} from 'react';
 import { Prompt } from 'react-router';
@@ -65,13 +65,11 @@ function AddNewTodo(props) {
             <section id="addNewTodo">
                 <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus}>
                     <div id='newTodoDates'>
-                        <DatePicker 
-                        id='datePicker' 
-                        selected={startDate} 
-                        onChange={(date) => datePick(date)}  
-                        showYearDropdown showMonthDropdown showTimeSelect 
-                        timeFormat="H:mm" timeIntervals={10} 
-                        dateFormat=" dd/MM/yyyy H:mm " minDate={new Date()}
+                        <Flatpickr
+                            id='datePicker'
+                            options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}
+                            value={startDate}
+                            onChange={date => {datePick(date);}}
                         />
                     </div>
                     <input type="text" id="newTodoTitle" placeholder='Title' required />

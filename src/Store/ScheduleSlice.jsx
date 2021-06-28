@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialScheduleState = {
-    "0":{},
-    "1":{},
-    "2":{},
-    "3":{},
-    "4":{},
-    "5":{},
-    "6":{}
+    schedule:{
+        'start using planner':{
+            'title':'Start using Planner',
+            'weekdays':{1:true,2:true,3:true,4:true,5:true,6:true,0:true},
+            'time':'12:00'
+        }
+    }
 }
 
 const scheduleSlice = createSlice({
@@ -15,12 +15,16 @@ const scheduleSlice = createSlice({
     initialState:initialScheduleState,
     reducers:{
         addTask(state,action) {
-
+            state.schedule[action.payload.title.toLowerCase()] = {'title':action.payload.title, 'weekdays':action.payload.weekdays,'time':action.payload.time}
         },
         removeTask(state,action) {
-            
+            const newSchedule = {...state.schedule};
+            delete newSchedule[action.payload.toLowerCase()]
+            state.schedule = newSchedule
+        },
+        setSchedule(state,action) {
+            state.schedule = action.payload
         }
-        
     }
 });
 

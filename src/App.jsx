@@ -9,7 +9,6 @@ import Cookies from 'js-cookie';
 import Navigation from './Components/Navigation/Navigation';
 import { toDoActions} from './Store/Store'; 
 import Loading from './Components/Misc/Loading';
-
 //Lazy Loading
 const SchedulePage = React.lazy(()=> import('./pages/SchedulePage'));
 const TodoPage = React.lazy(()=> import('./pages/Todo-pages/TodoPage'));
@@ -21,7 +20,6 @@ const NotFound = React.lazy(()=> import('./pages/NotFound'));
 const HomePage = React.lazy(()=> import('./pages/HomePage'));
 const AuthPage = React.lazy(()=> import('./pages/Auth-pages/AuthPage'));
 const ProfilePage = React.lazy(()=> import('./pages/Auth-pages/ProfilePage'));
-
 
 function App() {
   const [token,userId] = [Cookies.get('token'),Cookies.get('userId')];
@@ -45,7 +43,7 @@ function App() {
     }
   },[])
   return (
-    <div id="app">
+    <div id="app" >
       <Navigation />
       <main>
         <Suspense fallback={<Loading/>}>
@@ -53,13 +51,13 @@ function App() {
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
-            <Route exact path="/home">
+            <Route path="/home">
               <HomePage />
             </Route>
-            <Route exact path="/auth">
+            <Route path="/auth">
             {!isLoggedIn?<AuthPage />:<Redirect to="/profile" />}
             </Route>
-            <Route exact path="/profile">
+            <Route path="/profile">
               {isLoggedIn?<ProfilePage />:<Redirect to="/auth" />}
             </Route>
             <Route exact path="/schedule">

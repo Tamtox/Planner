@@ -1,9 +1,10 @@
 import {useDispatch} from 'react-redux';
+import { Prompt } from 'react-router';
 import React,{useState,useEffect,useRef} from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/airbnb.css";
 import {journalActions} from '../../Store/Store';
 import './Journal.scss';
 
@@ -27,6 +28,7 @@ function Journal(props) {
                 }).catch(err=>{
                     alert(err)
                 })
+                journalRef.current.value = ''
             } 
             // Assign redux state if data is there
             else{
@@ -57,18 +59,27 @@ function Journal(props) {
             alert(err)
         })
     }
+     // Promt on form focus
+    const [used,setUsed] = useState(false);
+    function finishEntering() {
+        setUsed(false)
+    }
+    function formFocus() {
+        setUsed(true)
+    }
     useEffect(()=>{
         loadJournalData(new Date())
     },[])
     return (
         <section id="journal">
             <div id="journalCard">
+                <Prompt when={used} message={()=> "All entered data will be lost!"} />
                 <div id="dateSelection">
-                    <DatePicker id='datePicker' selected={startDate} onChange={(newDate) => selectJournalEntryByDate(newDate)} dateFormat=" dd/MM/yyyy" />
+                    <Flatpickr id='datePicker' options={{ dateFormat:'d-m-Y ',enableTime:false }} value={startDate} onChange={date => {selectJournalEntryByDate(date[0]);}}/>
                 </div>
-                <form id="journalForm" onSubmit={submitJournalForm}>
+                <form id="journalForm" onSubmit={submitJournalForm} onFocus={formFocus}>
                     <textarea ref={journalRef} id="journalEntry" cols="1" rows="1" required ></textarea>
-                    <button id='submitJournalForm' className='button hover'>Submit</button>
+                    <button id='submitJournalForm' className='button hover' onClick={finishEntering}>Submit</button>
                 </form>
             </div>
         </section>

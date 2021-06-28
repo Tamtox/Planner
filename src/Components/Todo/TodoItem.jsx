@@ -3,7 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faTimesCircle,faCircle,faCheckCircle,faEdit} from '@fortawesome/free-regular-svg-icons';
+import {faCircle,faCheckCircle,faEdit,faTrashAlt} from '@fortawesome/free-regular-svg-icons';
 import './Todoitem.scss';
 import {toDoActions} from '../../Store/Store';
 
@@ -36,18 +36,10 @@ function ToDoItem(props) {
     return(
         <div className="toDoItem">
             <h2 className='toDoItemTitle'>{props.title}</h2>
-            <div className='toDoItemCreationDate'>
-                <p>Creation Date</p>
-                <p>{creationDate}</p>
-            </div>
-            {props.targetDate && <div className='toDoItemTargetDate'>
-                <p>Target Date</p>
-                <p>{targetDate}</p>
-            </div>}
             <div className='todoItemIcons'>
                 <FontAwesomeIcon onClick={changeTodoStatus} className={`changeTodoStatusIcon hoverFilter ${props.status}`}  icon={props.status === 'Pending'?faCircle:faCheckCircle} />
                 <Link to={`/todo/${props.id}`} className='linkToDetailedTodo link'><FontAwesomeIcon className='iconToDetailedTodo hoverFilter' icon={faEdit} /></Link>
-                <FontAwesomeIcon onClick={deleteToDo} className='deleteTodoIcon hoverFilter'  icon={faTimesCircle} />
+                <FontAwesomeIcon onClick={deleteToDo} className='deleteTodoIcon hoverFilter'  icon={faTrashAlt} />
             </div>
         </div>
     )

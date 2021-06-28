@@ -81,9 +81,9 @@ function Auth(props) {
                             }
                         },
                         schedule:{
-                            [currentWeekday+'']:{
-                                '12:00':'Start using Planner',
-                                '13:00':'Do something great'
+                            'Start using Planner':{
+                                'weekdays':1234560,
+                                'time':'12:00'
                             }
                         }
                     }
@@ -120,7 +120,7 @@ function Auth(props) {
             <div id='authCard'>
                 <h1 id='authTitle'>{login?'Sign In':'Sign Up'}</h1>
                 <form action="" id='authForm' className={login?'login':'signup'} onSubmit={authFormSubmit}>
-                    <input type="text" id='authEmail' className='authInput' style={!login?signupHeight:{}} ref={emailRef} placeholder='Email' required/>
+                    <input type="email" id='authEmail' className='authInput' style={!login?signupHeight:{}} ref={emailRef} placeholder='Email' required/>
                     <input type="password" id='authPassword' className='authInput' style={!login?signupHeight:{}} ref={passwordRef} placeholder='Password' required/>
                     {!login&& <input type="password" id='repeatPassword' className='authInput' style={!login?signupHeight:{}} ref={repeatRef} placeholder='Repeat Password' required/>}
                     {loading?<LoadingHorizontal />:<button id='authButton' className='hover button' style={!login?signupHeight:{}}>{login?'Sign In':'Sign Up'}</button>}
