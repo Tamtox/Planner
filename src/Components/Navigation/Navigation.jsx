@@ -9,7 +9,7 @@ import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {faUser} from '@fortawesome/free-regular-svg-icons';
 function Navigation(props) {
     const fontSize = {
-        fontSize:'1.5rem'
+        fontSize:'1.2rem'
     }
     // Logout
     const isLoggedIn = !!useSelector(state=>state.authSlice.token);

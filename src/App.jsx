@@ -1,13 +1,10 @@
 // Dependencies
 import './App.scss';
-import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {useDispatch,useSelector} from 'react-redux';
-import React,{ useEffect,Suspense } from 'react';
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import React,{ Suspense } from 'react';
 // Pages imports
 import Navigation from './Components/Navigation/Navigation';
-import { toDoActions} from './Store/Store'; 
 import Loading from './Components/Misc/Loading';
 //Lazy Loading
 const SchedulePage = React.lazy(()=> import('./pages/SchedulePage'));
@@ -22,26 +19,7 @@ const AuthPage = React.lazy(()=> import('./pages/Auth-pages/AuthPage'));
 const ProfilePage = React.lazy(()=> import('./pages/Auth-pages/ProfilePage'));
 
 function App() {
-  const [token,userId] = [Cookies.get('token'),Cookies.get('userId')];
   const isLoggedIn = !!useSelector(state=>state.authSlice.token);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  // Load data on start from database
-  function loadTodoData() {
-    axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/toDo/toDoList.json?auth=${token}`)
-    .then(res=>{
-      dispatch(toDoActions.setToDoList(res.data));
-    }).catch(err=>{
-      alert(err)
-    })
-  }
-  useEffect(()=>{
-    if(token === undefined) {
-      history.replace('/auth')
-    } else {
-      loadTodoData();
-    }
-  },[])
   return (
     <div id="app" >
       <Navigation />

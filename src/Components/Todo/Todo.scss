@@ -20,7 +20,11 @@
             height: 3rem;
             font-size: 1.5rem;
             border-radius: 5px;
+            padding: 2%;
         }
+    }
+    #loading{
+        height: 90%;
     }
     #toDoList{
         height: 90%;
@@ -84,6 +88,9 @@
                 max-width: 45%;
             }
         }
+        #loading{
+        height: 80%;
+        }
         #toDoList{
             height: 80%;
             grid-template-columns: minmax(30rem,80vw);
@@ -104,6 +111,9 @@
             #newTodoLink{
                 @include flex(center,center);
             }
+        }
+        #loading{
+        height: 80%;
         }
         #toDoList{
             height: 80%;

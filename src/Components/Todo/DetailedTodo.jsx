@@ -70,16 +70,14 @@ function DetailedTodo(props) {
             <Prompt when={used} message={()=> "All entered data will be lost!"} />
             <section id='detailedTodo'>
                 <form action="" id="detailedToDoForm" onSubmit={editTodo} onFocus={formFocus}>
-                    <div id='detailedDates'>
-                        <Flatpickr
-                            id='datePicker'
-                            options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true }}
-                            value={startDate}
-                            onChange={date => {datePick(date);}}
-                        />
-                    </div>
-                    <input ref={titleRef} type="text" id="detailedTitle" placeholder='Title' defaultValue={detailedItem!==undefined?detailedItem.title:''} required />
-                    <textarea ref={descriptionRef}  placeholder="Description(optional)" id="detailedDescription" cols="1" rows="1" defaultValue={detailedItem!== undefined?detailedItem.description:''}></textarea>
+                    <Flatpickr
+                        id='detailedDatePick' className="hover datePick"
+                        options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true }}
+                        value={startDate}
+                        onChange={date => {datePick(date);}}
+                    />
+                    <input ref={titleRef} type="text" id="detailedTitle" className="focus" placeholder='Title' defaultValue={detailedItem!==undefined?detailedItem.title:''} required />
+                    <textarea ref={descriptionRef}  placeholder="Description(optional)" id="detailedDescription" className="focus" cols="1" rows="1" defaultValue={detailedItem!== undefined?detailedItem.description:''}></textarea>
                     <button id="submitButton" className='hover button' onClick={finishEntering}>Submit</button>
                     <p id='creationDate'>{`Created: ${detailedItem!==undefined?new Date(detailedItem.creationDate).toLocaleString():''}`}</p>
                 </form>

@@ -45,7 +45,7 @@ function Auth(props) {
             // Create user entry in database on signup
             if(login === false) {
                 const currentDate = new Date();
-                const [currentYear,currentMonth,currentDay,currentWeekday] = [currentDate.getFullYear(),currentDate.getMonth()+1,currentDate.getDate(),currentDate.getDay()];
+                const [currentYear,currentMonth,currentDay] = [currentDate.getFullYear(),currentDate.getMonth()+1,currentDate.getDate()];
                 const newUserObject = {
                     userData:{email:emailInput},
                     appData:{
@@ -58,15 +58,10 @@ function Auth(props) {
                                 status:'Pending'}}
                         },
                         habits:{
-                            [currentYear+'']:{
-                                [currentMonth+'']:{
-                                    [currentDay+'']:{
-                                        date:currentDate.toString(),
-                                        habitsList:[{
-                                            title:'Drink 2 liters of water',
-                                            status:'Pending'
-                                        }]
-                                    }
+                            habitsList:{
+                                'drink 2 liters of water':{
+                                    title:'Drink 2 liters of water',
+                                    'weekdays':{0:true,1:true,2:true,3:true,4:true,5:true,6:true}
                                 }
                             }
                         },
@@ -75,15 +70,16 @@ function Auth(props) {
                                 [currentMonth+'']:{
                                     [currentDay+'']:{
                                         date:currentDate.toString(),
-                                        entry:''
+                                        entry:'Hello'
                                     }
                                 }
                             }
                         },
                         schedule:{
-                            'Start using Planner':{
-                                'weekdays':1234560,
-                                'time':'12:00'
+                            'start using planner':{
+                                'title':'Start using Planner',
+                                'time':'12:00',
+                                'weekdays':{0:true,1:true,2:true,3:true,4:true,5:true,6:true}
                             }
                         }
                     }
@@ -111,19 +107,15 @@ function Auth(props) {
             alert(err.response.data.error.message)
         })
     }
-    // Adjusted height for signup
-    const signupHeight = {
-        'height':'55%'
-    }
     return (
         <section id='auth'>
             <div id='authCard'>
                 <h1 id='authTitle'>{login?'Sign In':'Sign Up'}</h1>
                 <form action="" id='authForm' className={login?'login':'signup'} onSubmit={authFormSubmit}>
-                    <input type="email" id='authEmail' className='authInput' style={!login?signupHeight:{}} ref={emailRef} placeholder='Email' required/>
-                    <input type="password" id='authPassword' className='authInput' style={!login?signupHeight:{}} ref={passwordRef} placeholder='Password' required/>
-                    {!login&& <input type="password" id='repeatPassword' className='authInput' style={!login?signupHeight:{}} ref={repeatRef} placeholder='Repeat Password' required/>}
-                    {loading?<LoadingHorizontal />:<button id='authButton' className='hover button' style={!login?signupHeight:{}}>{login?'Sign In':'Sign Up'}</button>}
+                    <input type="email" id='authEmail'  className='authInput focus'  ref={emailRef} placeholder='Email' required/>
+                    <input type="password" id='authPassword'  className='authInput focus'  ref={passwordRef} placeholder='Password' required/>
+                    {!login&& <input type="password" id='repeatPassword'  className='authInput focus'  ref={repeatRef} placeholder='Repeat Password' required/>}
+                    {loading?<LoadingHorizontal />:<button id='authButton' className='hover button'>{login?'Sign In':'Sign Up'}</button>}
                 </form>
                 <button id='authSwitch' className='hoverFilter' onClick={toggleAuth}>{login?"Don't have an account?":'Use existing account'}</button>
             </div>

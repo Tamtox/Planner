@@ -64,16 +64,14 @@ function AddNewTodo(props) {
             <Prompt when={used} message={()=> "All entered data will be lost!"} />
             <section id="addNewTodo">
                 <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus}>
-                    <div id='newTodoDates'>
-                        <Flatpickr
-                            id='datePicker'
-                            options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}
-                            value={startDate}
-                            onChange={date => {datePick(date);}}
-                        />
-                    </div>
-                    <input type="text" id="newTodoTitle" placeholder='Title' required />
-                    <textarea placeholder="Description(optional)" id="newTodoDescription" cols="1" rows="1"></textarea>
+                    <Flatpickr
+                        id='newTodoDate' className="hover datePick"
+                        options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}
+                        value={startDate}
+                        onChange={date => {datePick(date);}}
+                    />
+                    <input type="text" id="newTodoTitle" className="focus" placeholder='Title' required />
+                    <textarea placeholder="Description(optional)" id="newTodoDescription" className="focus" cols="1" rows="1"></textarea>
                     <button id="submitButton" className='hover button' onClick={finishEntering}>Submit</button>
                 </form>
             </section>

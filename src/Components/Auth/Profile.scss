@@ -25,14 +25,11 @@
             grid-template: repeat(3,33,33%) / 100% ;
             justify-items: center;
             align-content: space-around;
-            #passwordChangeTitle{
-            }
             #passwordChangeInput{
                 width: 95%;
                 height: 3rem;
                 font-size: 1.2rem;
-            }
-            #passwordChangeButton{
+                padding: 2%;
             }
         }
     }

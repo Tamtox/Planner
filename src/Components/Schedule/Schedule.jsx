@@ -1,10 +1,11 @@
 import {useSelector,useDispatch} from 'react-redux';
 import { useState,useEffect} from 'react';
-import './Schedule.scss';
-import AddNewScheduleItem from './AddNewScheduleItem';
-import ScheduleItem from './ScheduleItem';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import './Schedule.scss';
+import AddNewScheduleItem from './AddNewScheduleItem';
+import Loading from '../Misc/Loading';
+import ScheduleItem from './ScheduleItem';
 import { scheduleActions } from "../../Store/Store";
 
 // Sort and filter array based on time and active weekdays
@@ -12,23 +13,24 @@ function sortAndFilter(arr,weekday) {
     return arr.sort((item1,item2)=> {
         return +item1.time.replace(':','') - +item2.time.replace(':','')
     }).filter(item=>{
-        if(item.weekdays[weekday] == true) {
-            return item
-        }
+        return item.weekdays[weekday] === true
     })
 }
 
 function Schedule() {
     const [token,userId] = [Cookies.get('token'),Cookies.get('userId')];
     const dispatch = useDispatch();
+    const [loading,setLoading] = useState(false);
     const schedule = useSelector(state=>state.scheduleSlice.schedule);
     const [weekday,setWeekDay] = useState(new Date().getDay()+'')
     // Toggle Add new Schedule task form
     const [toggleAddNew, setToggleAddNew] = useState(false);
     // Fetch schedule data from server
     function fetchScheduleData() {
+        setLoading(true)
         axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/schedule.json?auth=${token}`)
         .then(res=>{
+            setLoading(false)
             dispatch(scheduleActions.setSchedule(res.data))
         }).catch(err=>{
             console.log(err)
@@ -47,7 +49,9 @@ function Schedule() {
     // Sort tasks by time and filter by active weekdays
     const scheduleArr = sortAndFilter(Object.values(schedule),weekday);
     useEffect(() => {
-        fetchScheduleData();
+        if(schedule.test) {
+            fetchScheduleData();
+        }
     }, [])
     return (
         <section id='schedule'>
@@ -61,15 +65,15 @@ function Schedule() {
                     <option value="6">Saturday</option>
                     <option value="0">Sunday</option>
                 </select>
-                <button onClick={()=>setToggleAddNew(!toggleAddNew)} id='addNewScheduleEntry' className='hover button'>Add New Entry</button>
+                <button onClick={()=>setToggleAddNew(!toggleAddNew)} id='addNewScheduleEntry' className='hover button'>New Task</button>
             </div>
-            <div id='scheduleTaskList'>
+            {loading?<Loading/>:<div id='scheduleTaskList'>
                 {scheduleArr.map((item,index)=>{
                     return (
                         <ScheduleItem key={index} title={item.title} time={item.time} delete={()=>deleteScheduleTask(item.title)} />
                     )
                 })}
-            </div>
+            </div>}
             {toggleAddNew && <AddNewScheduleItem token={token} userId={userId} returnToSchedule={()=>setToggleAddNew(false)}/>}
         </section>
     )

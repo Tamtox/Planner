@@ -7,19 +7,23 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/airbnb.css";
 import {journalActions} from '../../Store/Store';
 import './Journal.scss';
+import Loading from '../Misc/Loading';
 
 function Journal(props) {
     const [token,userId] = [Cookies.get('token'),Cookies.get('userId')];
+    const [loading,setLoading] = useState(false);
     const journalRef = useRef();
     const dispatch = useDispatch();
     const [startDate, setStartDate] = useState(new Date());
     // Load journal entry from database if it exists
     function loadJournalData(date) {
+        setLoading(true)
         const [currentYear,currentMonth,currentDate] = [date.getFullYear(),date.getMonth()+1,date.getDate()];
         axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/journal/${currentYear}/${currentMonth}/${currentDate}.json?auth=${token}`)
         .then(res=>{
             // Put dummy data if entry is undefined
             if(res.data === null) {
+                setLoading(false)
                 dispatch(journalActions.setEntry({date:date.toString(),entry:''}))
                 axios.request({
                     method:'put',
@@ -32,6 +36,7 @@ function Journal(props) {
             } 
             // Assign redux state if data is there
             else{
+                setLoading(false)
                 dispatch(journalActions.setEntry(res.data));
                 journalRef.current.value = res.data.entry
             }
@@ -74,11 +79,9 @@ function Journal(props) {
         <section id="journal">
             <div id="journalCard">
                 <Prompt when={used} message={()=> "All entered data will be lost!"} />
-                <div id="dateSelection">
-                    <Flatpickr id='datePicker' options={{ dateFormat:'d-m-Y ',enableTime:false }} value={startDate} onChange={date => {selectJournalEntryByDate(date[0]);}}/>
-                </div>
+                <Flatpickr id="journalDateSelection" className="hover datePick" options={{ dateFormat:'d-m-Y ',enableTime:false }} value={startDate} onChange={date => {selectJournalEntryByDate(date[0]);}}/>
                 <form id="journalForm" onSubmit={submitJournalForm} onFocus={formFocus}>
-                    <textarea ref={journalRef} id="journalEntry" cols="1" rows="1" required ></textarea>
+                    {loading?<Loading/>:<textarea ref={journalRef} id="journalEntry" className="focus" cols="1" rows="1" required ></textarea>}
                     <button id='submitJournalForm' className='button hover' onClick={finishEntering}>Submit</button>
                 </form>
             </div>

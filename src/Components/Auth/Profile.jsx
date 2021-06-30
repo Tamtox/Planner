@@ -67,7 +67,7 @@ function Profile(props) {
                 <div id='lastLogin' className='profileItems'>{`Last Login:${profileData.lastLogin}`}</div>
                 <form action="" onSubmit={changePassword} id='passwordChangeForm'>
                     <h2 id='passwordChangeTitle' >{passwordChangeTitle}</h2>
-                    <input required id='passwordChangeInput' type="password" ref={passwordChangeRef} placeholder='New Password'/>
+                    <input required id='passwordChangeInput' className="focus" type="password" ref={passwordChangeRef} placeholder='New Password'/>
                     <button id='passwordChangeButton' className='hover button'>Submit</button>
                 </form>
             </div>}

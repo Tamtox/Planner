@@ -2,10 +2,10 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialScheduleState = {
     schedule:{
-        'start using planner':{
-            'title':'Start using Planner',
+        'test':{
+            'title':'Test',
             'weekdays':{1:true,2:true,3:true,4:true,5:true,6:true,0:true},
-            'time':'12:00'
+            'time':'12:00',
         }
     }
 }
