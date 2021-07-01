@@ -1,0 +1,9 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#home{
+    @include flex(center,center );
+    height: 100%;
+}

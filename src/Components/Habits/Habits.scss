@@ -1,0 +1,84 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+#habits{
+    @include flex(center,center);
+    flex-direction: column;
+    height: 100%;
+    #habitsControls{
+        width: 60rem;
+        height: 10%;
+        max-width: 95%;
+        display: grid;
+        grid-template: 100% / 1fr 1fr 1fr ;
+        justify-items: center;
+        align-items: center;
+        #week{
+            font-size: 1.3rem;
+        }
+    }
+    #habitsList{
+        height: 90%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 40rem;
+        grid-auto-rows: 2rem;
+        gap: 2%;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: 3% 1% 0% 1%;
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    #habits{
+        #habitsControls{
+            @include flex(space-around,center );
+            height: 20%;
+            flex-wrap: wrap;
+            #week{
+                @include flex(space-around,center );
+                order: -1;
+                width: 95%;
+                max-width: 95%;
+            }
+            #datePicker{
+                max-width: 45%;
+            }
+            #addNewHabit{
+                max-width: 45%;
+            }
+        }
+        #habitsList{
+            height: 80%;
+            grid-template-columns: 95%;
+        }
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    #habits{
+        #habitsControls{
+            @include flex(space-around,center );
+            height: 20%;
+            flex-wrap: wrap;
+            #week{
+                @include flex(space-around,center );
+                order: -1;
+                width: 95%;
+                max-width: 95%;
+            }
+            #datePicker{
+                max-width: 45%;
+            }
+            #addNewHabit{
+                max-width: 45%;
+            }
+        }
+        #habitsList{
+            height: 80%;
+            grid-template-columns: 95%;
+        }
+    }
+}

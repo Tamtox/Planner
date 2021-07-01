@@ -1,0 +1,42 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+.toDoItem{
+    display: grid;
+    grid-template: repeat(10,10%) / repeat(10,10%) ;
+    border-radius: 5px;
+    padding: 2%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 100%;
+    .toDoItemTitle{
+        @include flex(center,center);
+        font-size: 1.3rem;
+        grid-area: 3 / 1 / span 10 / span 10;
+    }
+    .todoItemIcons{
+        @include flex(space-around,center);
+        grid-area: 1 / 8 / span 3 / span 4; 
+        .linkToDetailedTodo{
+            .iconToDetailedTodo{
+                color: royalblue;
+                font-size: 1.8rem;
+            }
+        }
+        .deleteTodoIcon{
+            font-size: 1.8rem;
+            color: black;
+        }
+        .changeTodoStatusIcon{
+            font-size: 1.8rem;
+        }
+        .Pending{
+            color: orange;
+        }
+        .Complete{
+            color: green;
+        }
+    }
+}

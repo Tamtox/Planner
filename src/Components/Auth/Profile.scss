@@ -1,0 +1,37 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#profile{
+    height: 100%;
+    @include flex(center,center);
+    #profileCard{
+        width: 50rem;
+        max-width: 95%;
+        height: 70%;
+        display: grid;
+        grid-template: 15% 15% 15% 55% / 100% ;
+        justify-items: center;
+        align-items: center;
+        padding: 2% 1% 0 1%;
+        .profileItems{
+            font-size: 1.2rem;
+        }
+        #passwordChangeForm{
+            width: 80%;
+            height: 100%;
+            display: grid;
+            grid-template: repeat(3,33,33%) / 100% ;
+            justify-items: center;
+            align-content: space-around;
+            #passwordChangeInput{
+                width: 95%;
+                height: 3rem;
+                font-size: 1.2rem;
+                padding: 2%;
+            }
+        }
+    }
+
+}

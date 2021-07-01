@@ -1,0 +1,43 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#schedule{
+    height: 100%;
+    display: grid;
+    grid-template: 10% 90% / 100% ;
+    #scheduleControls{
+        @include flex(center,center);
+        #selectDay{
+            margin-right:1% ;
+        }
+        #addNewScheduleEntry{
+            margin-left:1% ;
+        }
+    }
+    #scheduleTaskList{
+        width: 100%;
+        display: grid;
+        grid-template-columns: 40rem;
+        grid-auto-rows: 2rem;
+        gap: 2%;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: 3% 1% 0% 1%;
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    #schedule{
+        #scheduleTaskList{
+            grid-template-columns: 95%;
+        }
+    }
+}
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+    #schedule{
+        #scheduleTaskList{
+            grid-template-columns: 95%;
+        }
+    }
+}

@@ -1,0 +1,63 @@
+@mixin flex($justify,$align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+#auth{
+    height: 100%;
+    @include flex(center,center);
+    #authCard{
+        width: 35rem;
+        max-width: 95%;
+        height: 70%;
+        display: grid;
+        grid-template: 20% 65% 15% / 100% ;
+        justify-items: center;
+        align-items: center;
+        background: radial-gradient(circle, rgb(0, 153, 255) 0%, rgb(0, 90, 199) 100%);
+        border-radius: 8px;
+        #authTitle{
+            color: white;
+            font-size: 2.5rem;
+        }
+        #authForm{
+            width: 80%;
+            height: 100%;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            .authInput{
+                width: 100%;
+                height: 3rem;
+                font-size: 1.3rem;
+                border-radius: 5px;
+                padding: 3%;
+            }
+            #authButton{
+                width: 50%;
+                font-size: 1.3rem;
+                background-color: white;
+            }
+            .login{
+                grid-template: repeat(3, 33.33%) / 100% ;
+            }
+            .signup{
+                grid-template: repeat(4, 25%) / 100% ;
+            }
+        }
+        #authSwitch{
+            font-size: 1.5rem;
+            background: none;
+            color: white;
+            border: none;
+        }
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    #auth{
+        #authCard{
+            min-width: 95%;
+        }
+    }
+}
