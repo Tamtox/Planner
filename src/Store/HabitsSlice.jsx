@@ -1,9 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
 const initialHabitsState = {
     habitsList:{
-        'drink 2 liters of water':{
-            title:'Drink 2 liters of water',
-            'weekdays':{0:true,1:true,2:true,3:true,4:true,5:true,6:true}
+        test:{
+            title:'Test',
+            weekdays:{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true},
+        }
+    },
+    entry:{
+        test:{
+            title:'Test',
+            weekdays:{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true},
+            status:'Pending',
+            date:new Date().toString(),
+            test:true
         }
     }
 };
@@ -12,13 +21,22 @@ const habitsSlice = createSlice({
     initialState:initialHabitsState, 
     reducers:{
         addHabit(state,action) {
-            state.toDoList.push(action.payload)
+            state.habitsList[action.payload.title.toLowerCase()] = {title:action.payload.title,weekdays:action.payload.weekdays}
+            state.entry[action.payload.title.toLowerCase()] = action.payload
         },
-        removeHabit(state,action) {
-            
+        deleteHabit(state,action) {
+            const newHabitsList = {...state.habitsList}
+            delete newHabitsList[action.payload]
+            state.habitsList = newHabitsList
+        },
+        changeHabitStatus(state,action) {
+            state.entry[action.payload].status = state.entry[action.payload].status === 'Pending'?'Complete':'Pending'
+        },
+        setHabitList(state,action) {
+            state.habitsList = action.payload
         },
         setHabitData(state,action) {
-
+            state.entry = action.payload
         }
     }
 });

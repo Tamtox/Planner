@@ -1,7 +1,7 @@
 // Dependencies
 import './App.scss';
 import {Route, Switch, Redirect} from 'react-router-dom';
-import {useDispatch,useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import React,{ Suspense } from 'react';
 // Pages imports
 import Navigation from './Components/Navigation/Navigation';
@@ -27,7 +27,7 @@ function App() {
         <Suspense fallback={<Loading/>}>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/home" />
+              <Redirect to="/auth" />
             </Route>
             <Route path="/home">
               <HomePage />

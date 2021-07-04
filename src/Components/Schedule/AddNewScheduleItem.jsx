@@ -20,14 +20,14 @@ function AddNewScheduleItem(props) {
     const taskNameRef = useRef();
     function addNewScheduleEntry(event) {
         event.preventDefault();
-        const [taskNameInput,timeInput] = [taskNameRef.current.value,startDate[0].toLocaleTimeString().slice(0,-3)];
+        const [taskNameInput,timeInput] = [taskNameRef.current.value,startDate.toLocaleTimeString().slice(0,-3)];
         let activeDays = Object.values(checkBoxes).every(item=>item===false)?{1:true,2:true,3:true,4:true,5:true,6:true,0:true}:checkBoxes;
         const newScheduleTask = {weekdays:activeDays,time:timeInput,title:taskNameInput}
-        dispatch(scheduleActions.addTask(newScheduleTask))
         axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/schedule/${taskNameInput.toLowerCase()}.json?auth=${props.token}`)
         .then(res=>{
             // Put new entry if one doesn't exist
             if(res.data === null) {
+                dispatch(scheduleActions.addTask(newScheduleTask))
                 axios.request({
                     method: "put",
                     url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/schedule/${taskNameInput.toLowerCase()}.json?auth=${props.token}`,
@@ -35,16 +35,9 @@ function AddNewScheduleItem(props) {
                 }).catch(err=>{
                     alert(err.response.data.error.message)
                 })
-            } 
-            // Patch existing entry
-            else {
-                axios.request({
-                    method: "patch",
-                    url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/schedule/${taskNameInput.toLowerCase()}.json?auth=${props.token}`,
-                    data: newScheduleTask,
-                }).catch(err=>{
-                    alert(err.response.data.error.message)
-                })
+            } else {
+                alert('Entry exists already')
+                return
             }
         }).catch(err=>{
             alert(err.response.data.error.message)

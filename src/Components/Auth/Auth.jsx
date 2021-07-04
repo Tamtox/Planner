@@ -61,7 +61,7 @@ function Auth(props) {
                             habitsList:{
                                 'drink 2 liters of water':{
                                     title:'Drink 2 liters of water',
-                                    'weekdays':{0:true,1:true,2:true,3:true,4:true,5:true,6:true}
+                                    'weekdays':{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true}
                                 }
                             }
                         },

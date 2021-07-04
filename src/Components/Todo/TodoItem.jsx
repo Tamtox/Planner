@@ -10,7 +10,6 @@ import {toDoActions} from '../../Store/Store';
 function ToDoItem(props) {
     const [token,userId] = [Cookies.get('token'),Cookies.get('userId')];
     const dispatch = useDispatch();
-    const [creationDate,targetDate] = [new Date(props.creationDate).toLocaleString(),new Date(props.targetDate).toLocaleString()];
     // Toggle Todo status
     async function changeTodoStatus() {
         await dispatch(toDoActions.changeToDoStatus(props.id));

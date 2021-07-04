@@ -13,14 +13,56 @@ function AddNewHabitItem(props) {
     function setWeekdays(event) {
         setCheckboxes({...checkBoxes,[event.target.name]:!checkBoxes[event.target.name]});
     }
+    const habitNameRef = useRef();
+    // Add New Habit
+    function addNewHabit(event) {
+        event.preventDefault();
+        const habitName = habitNameRef.current.value;
+        const [targetYear,targetMonth,targetDate,targetWeekday] = [props.startDate.getFullYear(),props.startDate.getMonth()+1,props.startDate.getDate(),props.startDate.getDay()];
+        let activeDays = Object.values(checkBoxes).every(item=>item===false)?{1:true,2:true,3:true,4:true,5:true,6:true,0:true}:checkBoxes;
+        // Check if habit exists
+        const newHabit = {title:habitName,weekdays:activeDays}
+        axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/habits/habitsList/${habitName.toLowerCase()}.json?auth=${props.token}`)
+        .then(res=>{
+            // Create new habit if it doesn't exit
+            if(res.data === null) {
+                axios.request({
+                    method: "put",
+                    url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/habits/habitsList/${habitName.toLowerCase()}.json?auth=${props.token}`,
+                    data: newHabit,
+                }).catch(err=>{
+                    alert(err.response.data.error.message)
+                })
+                // Add new habit for today 
+                newHabit.status = 'Pending'
+                newHabit.date = new Date().toString()
+                if(activeDays[targetWeekday]) {
+                    dispatch(habitsActions.addHabit(newHabit))
+                    axios.request({
+                        method: "put",
+                        url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}/${habitName.toLowerCase()}.json?auth=${props.token}`,
+                        data: newHabit,
+                    }).catch(err=>{
+                        alert(err.response.data.error.message)
+                    })
+                }
+            } else {
+                alert('Habit already exists')
+                return
+            }
+        }).catch(err=>{
+            alert(err)
+        })
+        props.returnToHabits();
+    }
     return (
         <div id='addHabitItemBackdrop'>
-            <form id='addHabitItemForm' >
+            <form id='addHabitItemForm' onSubmit={addNewHabit}>
                 <div className="infoTooltip">
                     <span className="infoTooltipText">Select active weekdays. Leave unchecked to apply task to every day. </span>
                     <FontAwesomeIcon className='hoverFilter infoIcon' icon={faInfoCircle} />
                 </div>
-                <input type="text" id='newHabitName' className="focus" placeholder='Habit Name' required/>
+                <input type="text" ref={habitNameRef} id='newHabitName' className="focus" placeholder='Habit Name' required/>
                 <div className="weekDaysSelector">
                     <input type="checkbox" id="weekday-mon" name="1" className="weekday" onClick={(event)=>setWeekdays(event)}/>
                     <label htmlFor="weekday-mon">Mon</label>

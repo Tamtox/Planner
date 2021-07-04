@@ -30,10 +30,10 @@
         height: 90%;
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2,40rem);
+        grid-template-columns: repeat(auto-fill,40rem);
+        justify-content: center;
         grid-auto-rows: 8rem;
         gap: 5% 2%;
-        justify-content: center;
         overflow-y: scroll;
         padding: 3% 1% 0% 1%;
         .hidden{
@@ -46,8 +46,6 @@
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     #toDo{
         #toDoControls{
-            width: 33rem;
-            max-width: 95%;
             height: 20%;
             @include flex(space-around,center );
             flex-wrap: wrap;
@@ -114,24 +112,6 @@
         }
         #loading{
         height: 80%;
-        }
-        #toDoList{
-            height: 80%;
-            grid-template-columns: minmax(40rem,70%);
-        }
-    }
-}
-@media only screen and (min-width: 993px) and (max-width: 1200px) {
-    #toDo{
-        #toDoList{
-            grid-template-columns: repeat(2,1fr);
-        }
-    }
-}
-@media only screen and (min-width: 1201px) and (max-width: 1400px) {
-    #toDo{
-        #toDoList{
-            grid-template-columns: repeat(2,minmax(40rem,50%));
         }
     }
 }

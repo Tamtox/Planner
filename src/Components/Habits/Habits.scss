@@ -16,17 +16,28 @@
         grid-template: 100% / 1fr 1fr 1fr ;
         justify-items: center;
         align-items: center;
-        #week{
-            font-size: 1.3rem;
-        }
+    }
+    #loading{
+        height: 90%;
+    }
+    #todaysHabits{
+        height: 90%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,40rem);
+        grid-auto-rows: 5rem;
+        gap: 5% 2%;
+        justify-content: center;
+        overflow-y: scroll;
+        padding: 3% 1% 0% 1%;
     }
     #habitsList{
         height: 90%;
         width: 100%;
         display: grid;
-        grid-template-columns: 40rem;
-        grid-auto-rows: 2rem;
-        gap: 2%;
+        grid-template-columns: repeat(auto-fill,40rem);
+        grid-auto-rows: 8rem;
+        gap: 5% 2%;
         justify-content: center;
         overflow-y: scroll;
         padding: 3% 1% 0% 1%;
@@ -35,21 +46,24 @@
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     #habits{
         #habitsControls{
-            @include flex(space-around,center );
+            @include flex(space-around,center);
             height: 20%;
             flex-wrap: wrap;
-            #week{
+            #habitsViewToggle{
                 @include flex(space-around,center );
-                order: -1;
-                width: 95%;
-                max-width: 95%;
+                max-width: 45%;
             }
             #datePicker{
                 max-width: 45%;
+                order: 2;
             }
             #addNewHabit{
                 max-width: 45%;
             }
+        }
+        #todaysHabits{
+            height: 80%;
+            grid-template-columns: 95%;
         }
         #habitsList{
             height: 80%;
@@ -63,18 +77,21 @@
             @include flex(space-around,center );
             height: 20%;
             flex-wrap: wrap;
-            #week{
+            #habitsViewToggle{
                 @include flex(space-around,center );
-                order: -1;
-                width: 95%;
-                max-width: 95%;
+                max-width: 45%;
             }
             #datePicker{
                 max-width: 45%;
+                order: 2;
             }
             #addNewHabit{
                 max-width: 45%;
             }
+        }
+        #todaysHabits{
+            height: 80%;
+            grid-template-columns: 95%;
         }
         #habitsList{
             height: 80%;

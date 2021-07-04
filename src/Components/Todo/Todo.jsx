@@ -19,7 +19,7 @@ function sortList(list,sortQuery,searchQuery) {
         list = list.filter(item=>item.status === 'Complete')
     }
     if(!!searchQuery) {
-        list = list.filter(item=>item.title.toLowerCase().includes(searchQuery))
+        list = list.filter(item=>item.title.toLowerCase().includes(searchQuery.toLowerCase()));
     }
     return list
 }
