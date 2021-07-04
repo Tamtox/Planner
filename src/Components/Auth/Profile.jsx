@@ -62,11 +62,11 @@ function Profile(props) {
     return (
         <section id='profile'>
             {loading?<Loading/>:<div id='profileCard'>
-                <div id='email' className='profileItems'>{`E-mail:${profileData.email}`}</div>
-                <div id='creationDate' className='profileItems'>{`Creation Date:${profileData.createdAt}`}</div>
-                <div id='lastLogin' className='profileItems'>{`Last Login:${profileData.lastLogin}`}</div>
+                <div id='email' className='profileItems text-focus-in'>{`E-mail:${profileData.email}`}</div>
+                <div id='creationDate' className='profileItems text-focus-in'>{`Creation Date:${profileData.createdAt}`}</div>
+                <div id='lastLogin' className='profileItems text-focus-in'>{`Last Login:${profileData.lastLogin}`}</div>
                 <form action="" onSubmit={changePassword} id='passwordChangeForm'>
-                    <h2 id='passwordChangeTitle' >{passwordChangeTitle}</h2>
+                    <h2 id='passwordChangeTitle' className='text-focus-in' >{passwordChangeTitle}</h2>
                     <input required id='passwordChangeInput' className="focus" type="password" ref={passwordChangeRef} placeholder='New Password'/>
                     <button id='passwordChangeButton' className='hover button'>Submit</button>
                 </form>

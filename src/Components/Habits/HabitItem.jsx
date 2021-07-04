@@ -5,15 +5,14 @@ import {faTrashAlt,faCircle,faCheckCircle} from '@fortawesome/free-regular-svg-i
 
 
 function HabitItem(props) {
-    // Make weekday numbers into weekday strings
     return (
         <React.Fragment>
             {props.weekdays === undefined?
-            <div className='habitItem'>
+            <div className='habitItem fade-in'>
                 <p className='habitItemTitle'>{props.title}</p>
                 {props.status === 'Pending'?<FontAwesomeIcon  className='habitPendingIcon hoverFilter' icon={faCircle} onClick={props.changeStatus}/>:<FontAwesomeIcon  className='habitCompleteIcon hoverFilter' icon={faCheckCircle} onClick={props.changeStatus}/>}
             </div>:
-            <div className='habitListItem'>
+            <div className='habitListItem fade-in'>
                 <p className='habitListItemTitle'>{props.title}</p>
                 <p className='habitListActiveWeekdays'>{props.weekdays[props.weekdays.length-1]===','?props.weekdays.slice(0,-1):props.weekdays}</p>
                 <FontAwesomeIcon  className='deleteHabitIcon hoverFilter' icon={faTrashAlt} onClick={props.deleteHabit}/>

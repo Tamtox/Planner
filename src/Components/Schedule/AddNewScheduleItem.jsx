@@ -45,8 +45,8 @@ function AddNewScheduleItem(props) {
         props.returnToSchedule();
     }
     return (
-        <div id='addScheduleItemBackdrop'>
-            <form id='addScheduleItemForm' onSubmit={addNewScheduleEntry}>
+        <div id='addScheduleItemBackdrop' className='opacity-transition'>
+            <form id='addScheduleItemForm' onSubmit={addNewScheduleEntry} className='scale-in'>
                 <div className='infoTooltip'>
                     <span className='infoTooltipText'>Select active weekdays. Leave unchecked to apply task to every day. </span>
                     <FontAwesomeIcon className='hoverFilter infoIcon' icon={faInfoCircle} />

@@ -18,14 +18,18 @@
             width: 13rem;
             height: 3rem;
             background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            outline: inherit;
             box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.7);
             border-radius: 5px;
             font-size: 1.3rem;
-            text-align: center ;
+            text-align: center;
         }
         .active{
             color: white;
-            filter:drop-shadow(0px 0px 10px white);
             transform: scale(1.1);
             border-bottom: solid white 1px;
         }
@@ -38,12 +42,14 @@
         }
         .focus{
             transition: 0.3s;
+            animation: scale-in 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         }
         .focus:focus{
             transform: scale(1.01);
         }
         .hover{
             transition: 0.3s;
+            animation: scale-in 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         }
         .hover:hover{
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -88,18 +94,21 @@
         .link{
             text-decoration: none;
             color: inherit;
+            animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
         }
         .navLink{
             text-decoration: none;
             color: inherit  ;
             transition: 0.5s;
             font-size: 1.3rem;
+            animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
         }
         .navLinkSlide{
             text-decoration: none;
             color: inherit ;
             transition: 0.5s;
             font-size: 1.3rem;
+            animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
         }
         .weekDaysSelector{
             width: 100%;
@@ -130,6 +139,57 @@
         .weekDaysSelector input[type=checkbox]:checked + label {
         background: rgb(0, 153, 255);
         color: white;
+        }
+        // Transition Animations
+        .fade-in {
+            animation: fade-in 0.8s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+        }
+        @keyframes fade-in {
+            0% {
+            opacity: 0;
+            transform: translateY(-15px);
+            }
+            100% {
+            opacity: 1;
+            transform: translateY(0);
+            }
+        }
+        .text-focus-in {
+            animation: text-focus-in 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+        }
+        @keyframes text-focus-in {
+            0% {
+                filter: blur(12px);
+            opacity: 0;
+            }
+            100% {
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+        .scale-in {
+            animation: scale-in 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        @keyframes scale-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        } 
+        .opacity-transition{
+            animation: opacity-transition 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        @keyframes opacity-transition {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
     }
 }

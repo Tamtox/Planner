@@ -33,11 +33,11 @@ function ToDoItem(props) {
         })
     }
     return(
-        <div className="toDoItem">
+        <div className="toDoItem fade-in">
             <h2 className='toDoItemTitle'>{props.title}</h2>
             <div className='todoItemIcons'>
                 <FontAwesomeIcon onClick={changeTodoStatus} className={`changeTodoStatusIcon hoverFilter ${props.status}`}  icon={props.status === 'Pending'?faCircle:faCheckCircle} />
-                <Link to={`/todo/${props.id}`} className='linkToDetailedTodo link'><FontAwesomeIcon className='iconToDetailedTodo hoverFilter' icon={faEdit} /></Link>
+                <Link to={`/todo/${props.id}`} className='linkToDetailedTodo'><FontAwesomeIcon className='iconToDetailedTodo hoverFilter' icon={faEdit} /></Link>
                 <FontAwesomeIcon onClick={deleteToDo} className='deleteTodoIcon hoverFilter'  icon={faTrashAlt} />
             </div>
         </div>

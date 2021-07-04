@@ -56,8 +56,8 @@ function AddNewHabitItem(props) {
         props.returnToHabits();
     }
     return (
-        <div id='addHabitItemBackdrop'>
-            <form id='addHabitItemForm' onSubmit={addNewHabit}>
+        <div id='addHabitItemBackdrop' className='opacity-transition'>
+            <form id='addHabitItemForm' onSubmit={addNewHabit} className='scale-in'>
                 <div className="infoTooltip">
                     <span className="infoTooltipText">Select active weekdays. Leave unchecked to apply task to every day. </span>
                     <FontAwesomeIcon className='hoverFilter infoIcon' icon={faInfoCircle} />
