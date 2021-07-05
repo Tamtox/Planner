@@ -63,7 +63,7 @@ function AddNewTodo(props) {
         <Fragment>
             <Prompt when={used} message={()=> "All entered data will be lost!"} />
             <section id="addNewTodo">
-                <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus}>
+                <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus} className='scale-in'>
                     <Flatpickr
                         id='newTodoDate' className="hover datePick"
                         options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}

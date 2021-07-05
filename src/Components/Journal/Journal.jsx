@@ -77,7 +77,7 @@ function Journal(props) {
     },[])
     return (
         <section id="journal">
-            <div id="journalCard">
+            <div id="journalCard" className='scale-in'>
                 <Prompt when={used} message={()=> "All entered data will be lost!"} />
                 <Flatpickr id="journalDateSelection" className="hover datePick" options={{ dateFormat:'d-m-Y ',enableTime:false }} value={startDate} onChange={date => {selectJournalEntryByDate(date[0]);}}/>
                 <form id="journalForm" onSubmit={submitJournalForm} onFocus={formFocus}>

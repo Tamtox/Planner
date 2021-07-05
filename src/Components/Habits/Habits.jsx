@@ -21,47 +21,39 @@ function Habits(props) {
     const [loading,setLoading] = useState(false);
     const [isHabitsList,setIsHabitsList] = useState(false)
     // Load habits data
-    function loadHabitsData(date) {
+    async function loadHabitsData(date) {
         setLoading(true)
         const [targetYear,targetMonth,targetDate,targetWeekday] = [date.getFullYear(),date.getMonth()+1,date.getDate(),date.getDay()];
-        // Check if current week exists in database
-        axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}.json?auth=${token}`)
-        .then(res=>{
-            // Create new week entry if its null
-            if(res.data === null) {
-                const newDateData = {};
-                // Get habit list 
-                axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/habitsList.json?auth=${token}`)
-                .then(res=>{
-                    dispatch(habitsActions.setHabitList(res.data))
-                    for(let habit in res.data) {
-                        if(res.data[habit].weekdays[targetWeekday]) {
-                            newDateData[habit] = {...res.data[habit],status:'Pending',date:new Date().toString()}   
-                        }
-                    }
-                })
-                // Put habits data to selected date 
-                .then(res=>{
-                    dispatch(habitsActions.setHabitData(newDateData))
-                    axios.request({
-                        method: "put",
-                        url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}.json?auth=${token}`,
-                        data: newDateData,
-                    }).catch(err=>{
-                        alert(err.response.data.error.message)
-                    })
-                })
-            } else {
-                axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/habitsList.json?auth=${token}`)
-                .then(res=>{
-                    dispatch(habitsActions.setHabitList(res.data))
-                })
-                dispatch(habitsActions.setHabitData(res.data))
+        const newDateData = {};
+        try{
+            // Check if current week exists in database
+            const targetDateData = await axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}.json?auth=${token}`);
+            //Load and dispatch habits List
+            const habitListData = await axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/habitsList.json?auth=${token}`);
+            dispatch(habitsActions.setHabitList(habitListData.data))
+            // Set target date's data
+            for(let habit in habitListData.data) {
+                if(habitListData.data[habit].weekdays[targetWeekday]) {
+                    newDateData[habit] = {...habitListData.data[habit],status:'Pending',date:new Date().toString()}   
+                }
             }
-            setLoading(false)
-        }).catch(err=>{
+            if(targetDateData.data === null) {
+                dispatch(habitsActions.setHabitData(newDateData))
+                axios.request({
+                    method: "put",
+                    url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}.json?auth=${token}`,
+                    data: newDateData,
+                }).catch(err=>{
+                    alert(err.response.data.error.message)
+                })
+            }
+            else {
+                dispatch(habitsActions.setHabitData(targetDateData.data))
+            }
+        } catch(err) {
             alert(err)
-        })
+        }
+        setLoading(false)
     }
     // Load selected date's data
     function loadSelectedData(date) {
@@ -100,7 +92,7 @@ function Habits(props) {
             <div id="habitsControls">
                 <Flatpickr 
                     id="habitsDateSelection" className="hover datePick" 
-                    options={{dateFormat:'d-m-Y ',enableTime:false,minDate:new Date()}}  
+                    options={{dateFormat:'d-m-Y ',enableTime:false}}  
                     value={startDate} onChange={date => {loadSelectedData(date)}}
                 />
                 <button id='habitsViewToggle' className='hover button' onClick={()=>setIsHabitsList(!isHabitsList)}>

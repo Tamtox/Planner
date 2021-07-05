@@ -69,7 +69,7 @@ function DetailedTodo(props) {
         <Fragment>
             <Prompt when={used} message={()=> "All entered data will be lost!"} />
             <section id='detailedTodo'>
-                <form action="" id="detailedToDoForm" onSubmit={editTodo} onFocus={formFocus}>
+                <form action="" id="detailedToDoForm" onSubmit={editTodo} onFocus={formFocus} className='scale-in'>
                     <Flatpickr
                         id='detailedDatePick' className="hover datePick"
                         options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true }}

@@ -54,15 +54,16 @@ function Todo(props) {
         }
     }
     // Load data on start from database
-    function loadTodoData() {
+    async function loadTodoData() {
         setLoading(true)
-        axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/toDo/toDoList.json?auth=${token}`)
-        .then(res=>{
-            setLoading(false)
-            dispatch(toDoActions.setToDoList(res.data));
-        }).catch(err=>{
+        try{
+            const toDoData = await axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/toDo/toDoList.json?auth=${token}`);
+            dispatch(toDoActions.setToDoList(toDoData.data));
+        }
+        catch(err){
             alert(err)
-        })
+        }
+        setLoading(false)
     }
     useEffect(()=>{
         if(toDoList[0].test) {

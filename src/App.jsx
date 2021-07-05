@@ -27,13 +27,13 @@ function App() {
         <Suspense fallback={<Loading/>}>
           <Switch>
             <Route exact path="/">
-              <Redirect to="/auth" />
+              {!isLoggedIn?<Redirect to="/auth" />:<Redirect to="/schedule" />}
             </Route>
             <Route path="/home">
               <HomePage />
             </Route>
             <Route path="/auth">
-            {!isLoggedIn?<AuthPage />:<Redirect to="/profile" />}
+            {!isLoggedIn?<AuthPage />:<Redirect to="/schedule" />}
             </Route>
             <Route path="/profile">
               {isLoggedIn?<ProfilePage />:<Redirect to="/auth" />}
