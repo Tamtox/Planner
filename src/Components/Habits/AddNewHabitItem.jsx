@@ -1,8 +1,6 @@
 import axios from 'axios';
 import {useDispatch} from 'react-redux';
 import { useRef,useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import { habitsActions } from '../../Store/Store';
 import './AddNewHabitItem.scss'
 
@@ -58,12 +56,8 @@ function AddNewHabitItem(props) {
     return (
         <div id='addHabitItemBackdrop' className='opacity-transition'>
             <form id='addHabitItemForm' onSubmit={addNewHabit} className='scale-in'>
-                <div className="infoTooltip">
-                    <span className="infoTooltipText">Select active weekdays. Leave unchecked to apply task to every day. </span>
-                    <FontAwesomeIcon className='hoverFilter infoIcon' icon={faInfoCircle} />
-                </div>
                 <input type="text" ref={habitNameRef} id='newHabitName' className="focus" placeholder='Habit Name' required/>
-                <div className="weekDaysSelector">
+                <div className="weekDaysSelector" id='weekdaysSelector'>
                     <input type="checkbox" id="weekday-mon" name="1" className="weekday" onClick={(event)=>setWeekdays(event)}/>
                     <label htmlFor="weekday-mon">Mon</label>
                     <input type="checkbox" id="weekday-tue" name="2" className="weekday" onClick={(event)=>setWeekdays(event)}/>

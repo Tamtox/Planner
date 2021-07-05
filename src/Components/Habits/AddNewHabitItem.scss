@@ -19,24 +19,24 @@
         padding: 1%;
         background: rgb(255, 255, 255) ;
         #newHabitName{
-            grid-area: 6 / 1  / span 3 / span 10;
+            grid-area: 4 / 1  / span 3 / span 10;
             padding: 2%;
             border-radius: 5px; 
             font-size: 1.2rem;
         }
+        #weekdaysSelector{
+            grid-area: 10 / 1  / span 4 / span 10
+        }
         #addHabitFormButtons{
             @include flex(space-around,center );
-            grid-area: 17 / 1  / span 4 / span 10; 
+            grid-area: 16 / 1  / span 4 / span 10; 
         }
     }
 }
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-    #addScheduleItemBackdrop{
-        #addScheduleItemForm{
+    #addHabitItemBackdrop{
+        #addHabitItemForm{
             padding: 3%;
-            #newScheduleTaskTime{
-                width: 7rem;
-            }
             #weekDaysSelector input[type=checkbox] + label {
                 height: 70%;
             }
@@ -44,14 +44,11 @@
     }
 }
 @media only screen and (min-width: 481px) and (max-width: 768px) {
-    #addScheduleItemBackdrop{
-        #addScheduleItemForm{
+    #addHabitItemBackdrop{
+        #addHabitItemForm{
             padding: 3%;
-            #newScheduleTaskTime{
-                width: 7rem;
-            }
             #weekDaysSelector input[type=checkbox] + label {
-                height: 70%;
+                height: 100%;
             }
         }
     }

@@ -34,7 +34,6 @@
             max-width: 45%;
             top: 8.5%;
             left: 1%;
-            animation: 0.5s ease-in-out 0s 1 fadeIn;
             border-radius: 5px;
             z-index: 100;
         }
@@ -68,7 +67,6 @@
             max-width: 45%;
             top: 8.5%;
             right: 3%;
-            animation: 0.5s ease-in-out 0s 1 fadeIn;
             border-radius: 5px;
             z-index: 100;
         }
@@ -81,23 +79,11 @@
             width: 20em;
             top: 8.5%;
             right: 1%;
-            animation: 0.5s ease-in-out 0s 1 fadeIn;
             border-radius: 5px;
             z-index: 100;
         }
     }
 }
-@keyframes fadeIn {
-    0% {
-        transform: translateY(-15%);
-        opacity: 0%;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 100%;
-    }
-}
-
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     #navigation{
         #title{

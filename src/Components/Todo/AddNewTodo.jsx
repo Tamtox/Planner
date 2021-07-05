@@ -63,17 +63,19 @@ function AddNewTodo(props) {
         <Fragment>
             <Prompt when={used} message={()=> "All entered data will be lost!"} />
             <section id="addNewTodo">
-                <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus} className='scale-in'>
-                    <Flatpickr
-                        id='newTodoDate' className="hover datePick"
-                        options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}
-                        value={startDate}
-                        onChange={date => {datePick(date);}}
-                    />
-                    <input type="text" id="newTodoTitle" className="focus" placeholder='Title' required />
-                    <textarea placeholder="Description(optional)" id="newTodoDescription" className="focus" cols="1" rows="1"></textarea>
-                    <button id="submitButton" className='hover button' onClick={finishEntering}>Submit</button>
-                </form>
+                <div id='addNewTodoCard' className='scale-in'>
+                    <form ref={newTodoRef} id="addNewToDoForm" onSubmit={submitForm} onFocus={formFocus} >
+                        <Flatpickr
+                            id='newTodoDate' className="hover datePick"
+                            options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true, }}
+                            value={startDate}
+                            onChange={date => {datePick(date);}}
+                        />
+                        <input type="text" id="newTodoTitle" className="focus" placeholder='Title' required />
+                        <textarea placeholder="Description(optional)" id="newTodoDescription" className="focus" cols="1" rows="1"></textarea>
+                        <button id="submitButton" className='hover button' onClick={finishEntering}>Submit</button>
+                    </form>
+                </div>
             </section>
         </Fragment>
     )

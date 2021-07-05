@@ -34,7 +34,7 @@
         justify-content: center;
         grid-auto-rows: 8rem;
         gap: 5% 2%;
-        overflow-y: scroll;
+        overflow: hidden;
         padding: 3% 1% 0% 1%;
         .hidden{
             height: 10%;
@@ -63,7 +63,7 @@
         }
         #toDoList{
             height: 80%;
-            grid-template-columns: 1fr  ;
+            grid-template-columns: 95% ;
         }
     }
 }

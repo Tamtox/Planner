@@ -29,9 +29,9 @@ function Navigation(props) {
     }
     if(windowMoreThan) {
         navLinks = (
-            <nav id='navLinksMenu'>
+            <nav id='navLinksMenu' >
                 <FontAwesomeIcon id="navIcon" className='hoverFilter' icon={faBars} onClick={toggleNavLinksMenu} />
-                {navLinksMenu && <div id="navLinksSlide">
+                {navLinksMenu && <div id="navLinksSlide" className='slide-in-top'>
                     <NavLink style={fontSize} className="navLinkSlide hoverFilter" activeClassName="active" to="/schedule">Schedule</NavLink>
                     <NavLink style={fontSize} className="navLinkSlide hoverFilter" activeClassName="active" to="/todo">To Do</NavLink>
                     <NavLink style={fontSize} className="navLinkSlide hoverFilter" activeClassName="active" to="/habits">Habits</NavLink>
@@ -60,7 +60,7 @@ function Navigation(props) {
             {isLoggedIn && navLinks}
             <div id='authMenu'>
                 <FontAwesomeIcon id="authIcon" className='hoverFilter' icon={faUser} onClick={toggleAuthMenu} />
-                {authMenu && <div id={isLoggedIn?'authLinksSlide':'authLinksSlideWide'}>
+                {authMenu && <div id={isLoggedIn?'authLinksSlide':'authLinksSlideWide'} className='slide-in-top'>
                     {!isLoggedIn && <NavLink style={fontSize} className="navLinkSlide hoverFilter" activeClassName="active" to="/auth">Sign In / Sign Up</NavLink>}
                     {isLoggedIn && <NavLink style={fontSize} className="navLinkSlide hoverFilter" activeClassName="active" to="/profile">Profile</NavLink>}
                     {isLoggedIn && <Link style={fontSize} className="navLinkSlide hoverFilter" to="/home" onClick={logout}>Logout</Link>}

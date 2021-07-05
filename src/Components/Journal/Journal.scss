@@ -10,18 +10,18 @@
         height: 90%;
         width: 45rem;
         display: grid;
-        grid-template: 10% 90% / 100%;
+        grid-template: 15% 85% / 100%;
         justify-items: center;
         align-items: center;
         max-width: 95%;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         border-radius: 7px;
-        padding: 1% 0 1% 0;
+        padding: 2% 0 2% 0;
         #journalForm{
             width: 100%;
             height: 100%;
             display: grid;
-            grid-template: 90% 10%/ 100% ;
+            grid-template: 85% 15%/ 100% ;
             justify-items: center;
             align-items: center;
             #journalEntry{
@@ -31,9 +31,13 @@
                 border-radius: 5px;
                 padding: 1%;   
             }
-            #submitJournalForm{
-                align-self: start;
-            }
+        }
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    #journal{
+        #journalCard{
+            height: 85%;
         }
     }
 }

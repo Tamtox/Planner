@@ -4,8 +4,6 @@ import { useRef,useState } from 'react';
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/airbnb.css";
 import './AddNewScheduleItem.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 import { scheduleActions } from "../../Store/Store";
 
 function AddNewScheduleItem(props) {
@@ -47,10 +45,6 @@ function AddNewScheduleItem(props) {
     return (
         <div id='addScheduleItemBackdrop' className='opacity-transition'>
             <form id='addScheduleItemForm' onSubmit={addNewScheduleEntry} className='scale-in'>
-                <div className='infoTooltip'>
-                    <span className='infoTooltipText'>Select active weekdays. Leave unchecked to apply task to every day. </span>
-                    <FontAwesomeIcon className='hoverFilter infoIcon' icon={faInfoCircle} />
-                </div>
                 <Flatpickr
                     id='newScheduleTaskTime' className="hover datePick"
                     options={{ dateFormat:' H:i',enableTime:true,time_24hr:true,noCalendar:true }}
