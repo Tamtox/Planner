@@ -47,7 +47,7 @@ function AddNewScheduleItem(props) {
             <form id='addScheduleItemForm' onSubmit={addNewScheduleEntry} className='scale-in'>
                 <Flatpickr
                     id='newScheduleTaskTime' className="hover datePick"
-                    options={{ dateFormat:' H:i',enableTime:true,time_24hr:true,noCalendar:true }}
+                    options={{ dateFormat:' H:i',enableTime:true,time_24hr:true,noCalendar:true,disableMobile:true }}
                     value={startDate}
                     onChange={date => {setStartDate(date);}}
                 />

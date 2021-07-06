@@ -72,7 +72,7 @@ function DetailedTodo(props) {
                 <form action="" id="detailedToDoForm" onSubmit={editTodo} onFocus={formFocus} className='scale-in'>
                     <Flatpickr
                         id='detailedDatePick' className="hover datePick"
-                        options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true }}
+                        options={{ minDate:new Date(),dateFormat:'d-m-Y  H:i',enableTime:true,time_24hr:true,disableMobile:true }}
                         value={startDate}
                         onChange={date => {datePick(date);}}
                     />

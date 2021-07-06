@@ -29,6 +29,14 @@
 }
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     #schedule{
+        #scheduleControls{
+            #selectDay{
+                max-width: 45%;
+            }
+            #addNewScheduleEntry{
+                max-width: 45%;
+            }
+        }
         #scheduleTaskList{
             grid-template-columns: 95%;
         }
@@ -36,6 +44,14 @@
 }
 @media only screen and (min-width: 481px) and (max-width: 768px) {
     #schedule{
+        #scheduleControls{
+            #selectDay{
+                max-width: 45%;
+            }
+            #addNewScheduleEntry{
+                max-width: 45%;
+            }
+        }
         #scheduleTaskList{
             grid-template-columns: 95%;
         }
