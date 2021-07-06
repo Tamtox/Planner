@@ -64,10 +64,18 @@
         #todaysHabits{
             height: 80%;
             grid-template-columns: 95%;
+            .hidden{
+            height: 10%;
+            visibility: hidden
+        }
         }
         #habitsList{
             height: 80%;
             grid-template-columns: 95%;
+            .hidden{
+            height: 10%;
+            visibility: hidden
+        }
         }
     }
 }

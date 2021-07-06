@@ -73,6 +73,7 @@ function Schedule() {
                         <ScheduleItem key={index} title={item.title} time={item.time} delete={()=>deleteScheduleTask(item.title)} />
                     )
                 })}
+                <div className='hidden'>123</div>
             </div>}
             {toggleAddNew && <AddNewScheduleItem token={token} userId={userId} returnToSchedule={()=>setToggleAddNew(false)}/>}
         </section>

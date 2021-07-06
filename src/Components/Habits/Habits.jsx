@@ -106,6 +106,8 @@ function Habits(props) {
                 {habitsArr.map((item,index)=>{
                     return <HabitItem key={index} title={item.title} status={item.status} changeStatus={()=>changeHabitStatus(startDate,item.title,item.status)} />
                 })}
+                <div className='hidden'>123</div>
+                <div className='hidden'>123</div>
             </div>
             :
             <div id='habitsList'>
@@ -113,6 +115,8 @@ function Habits(props) {
                     let activeWeekdays = `${item.weekdays[1]?'Mon,':''}${item.weekdays[2]?'Tue,':''}${item.weekdays[3]?'Wed,':''}${item.weekdays[4]?'Thu,':''}${item.weekdays[5]?'Fri,':''}${item.weekdays[6]?'Sat,':''}${item.weekdays[0]?'Sun,':''}`;
                     return <HabitItem key={index} title={item.title} weekdays={activeWeekdays} deleteHabit={()=>deleteHabit(item.title)} />
                 })}
+                <div className='hidden'>123</div>
+                <div className='hidden'>123</div>
             </div>
             } 
             {toggleNewHabit && <AddNewHabitItem token={token} userId={userId} startDate={startDate} returnToHabits={()=>setToggleNewHabit(!toggleNewHabit)} />}

@@ -25,6 +25,10 @@
         justify-content: center;
         overflow: hidden;
         padding: 3% 1% 0% 1%;
+        .hidden{
+            height: 10%;
+            visibility: hidden
+        }
     }
 }
 @media only screen and (min-width: 320px) and (max-width: 480px) {
