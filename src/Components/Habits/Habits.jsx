@@ -95,7 +95,7 @@ function Habits(props) {
             <div id="habitsControls">
                 <Flatpickr 
                     id="habitsDateSelection" className="hover datePick" 
-                    options={{dateFormat:'d-m-Y ',enableTime:false,disableMobile:true}}  
+                    options={{dateFormat:'d-m-Y ',enableTime:false,disableMobile:true,maxDate:new Date()}}  
                     value={startDate} onChange={date => {loadSelectedData(date)}}
                 />
                 <button id='habitsViewToggle' className='hover button' onClick={()=>setIsHabitsList(!isHabitsList)}>
