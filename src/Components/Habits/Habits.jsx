@@ -72,6 +72,9 @@ function Habits(props) {
     }
     // Change habit status
     function changeHabitStatus(date,habitName,status) {
+        if(Array.isArray(date)) {
+            date = date[0]
+        }
         const [targetYear,targetMonth,targetDate] = [date.getFullYear(),date.getMonth()+1,date.getDate()];
         dispatch(habitsActions.changeHabitStatus(habitName.toLowerCase()))
         axios.request({
