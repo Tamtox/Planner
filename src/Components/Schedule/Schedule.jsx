@@ -71,7 +71,9 @@ function Schedule() {
             </div>
             {loading?<Loading/>:<div id='scheduleTaskList'>
                 {scheduleArr.map((item,index)=>{
-                    if(item === null) return null
+                    if(item === null) {
+                        return null
+                    }
                     return (
                         <ScheduleItem key={index} title={item.title} time={item.time} delete={()=>deleteScheduleTask(item.title)} />
                     )

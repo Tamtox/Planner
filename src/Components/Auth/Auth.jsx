@@ -4,7 +4,7 @@ import { useRef,useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 import {useDispatch} from 'react-redux';
-import { authActions,toDoActions } from '../../Store/Store';
+import { authActions} from '../../Store/Store';
 
 function Auth(props) {
     const history = useHistory();
@@ -44,53 +44,15 @@ function Auth(props) {
             dispatch(authActions.login({idToken:res.data.idToken,userId:res.data.localId}))
             // Create user entry in database on signup
             if(login === false) {
-                const currentDate = new Date();
-                const [currentYear,currentMonth,currentDay] = [currentDate.getFullYear(),currentDate.getMonth()+1,currentDate.getDate()];
                 const newUserObject = {
                     userData:{email:emailInput},
-                    appData:{
-                        toDo:{
-                            toDoList:{first:{
-                                title:'Welcome',
-                                description:'Add your own tasks',
-                                creationDate:currentDate.toString(),
-                                targetDate:currentDate.toString(),
-                                status:'Pending'}}
-                        },
-                        habits:{
-                            habitsList:{
-                                'drink 2 liters of water':{
-                                    title:'Drink 2 liters of water',
-                                    'weekdays':{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true}
-                                }
-                            }
-                        },
-                        journal:{
-                            [currentYear+'']:{
-                                [currentMonth+'']:{
-                                    [currentDay+'']:{
-                                        date:currentDate.toString(),
-                                        entry:'Hello'
-                                    }
-                                }
-                            }
-                        },
-                        schedule:{
-                            'start using planner':{
-                                'title':'Start using Planner',
-                                'time':'12:00',
-                                'weekdays':{0:true,1:true,2:true,3:true,4:true,5:true,6:true}
-                            }
-                        }
-                    }
                 }
-                dispatch(toDoActions.setToDoList(newUserObject.toDoList));
                 axios.request({
                     method: "put",
                     url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${res.data.localId}.json?auth=${res.data.idToken}`,
                     data: newUserObject,
                 }).catch(err=>{
-                    alert(err.response.data.error.message)
+                    alert(err)
                 })
             } 
         }).catch(err => {

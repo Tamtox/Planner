@@ -86,7 +86,7 @@ function Habits(props) {
         })
     }
     useEffect(() => {
-        if(habitsArr[0].test) {
+        if(habitsList.length === 0) {
             loadHabitsData(new Date())
         }
     }, [])

@@ -1,19 +1,10 @@
 import {createSlice} from '@reduxjs/toolkit';
 const initialHabitsState = {
     habitsList:{
-        test:{
-            title:'Test',
-            weekdays:{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true},
-        }
+
     },
     entry:{
-        test:{
-            title:'Test',
-            weekdays:{'Mon':true,'Tue':true,'Wed':true,'Thu':true,'Fri':true,'Sat':true,'Sun':true},
-            status:'Pending',
-            date:new Date().toString(),
-            test:true
-        }
+
     }
 };
 const habitsSlice = createSlice({
