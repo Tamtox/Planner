@@ -30,15 +30,13 @@ function AddNewScheduleItem(props) {
                     method: "put",
                     url: `https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${props.userId}/appData/schedule/${taskNameInput.toLowerCase()}.json?auth=${props.token}`,
                     data: newScheduleTask,
-                }).catch(err=>{
-                    alert(err.response.data.error.message)
                 })
             } else {
                 alert('Entry exists already')
                 return
             }
         }).catch(err=>{
-            alert(err.response.data.error.message)
+            alert(err)
         })
         props.returnToSchedule();
     }
@@ -49,7 +47,7 @@ function AddNewScheduleItem(props) {
                     id='newScheduleTaskTime' className="hover datePick"
                     options={{ dateFormat:' H:i',enableTime:true,time_24hr:true,noCalendar:true,disableMobile:true }}
                     value={startDate}
-                    onChange={date => {setStartDate(date);}}
+                    onChange={date => {setStartDate(date[0]);}}
                 />
                 <input type="text" ref={taskNameRef} id='newScheduleTaskName' className="focus" placeholder='Task Name' required/>
                 <div className="weekDaysSelector">

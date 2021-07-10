@@ -1,13 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 const initialToDoState = {
-    toDoList:[{
-        "creationDate": "Wed Jun 16 2021 11:01:40 GMT+0000 (Coordinated Universal Time)",
-        "description": "Add your own tasks",
-        "status": "Complete",
-        "targetDate": "Wed Jun 16 2021 11:01:40 GMT+0000 (Coordinated Universal Time)",
-        "title": "Welcome",
-        "test":true
-    }]
+    toDoList:[]
 }
 const toDoSlice = createSlice({
     name:'toDo',

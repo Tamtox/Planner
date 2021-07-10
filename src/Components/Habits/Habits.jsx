@@ -30,7 +30,7 @@ function Habits(props) {
             const targetDateData = await axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/${targetYear}/${targetMonth}/${targetDate}.json?auth=${token}`);
             //Load and dispatch habits List
             const habitListData = await axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/habits/habitsList.json?auth=${token}`);
-            dispatch(habitsActions.setHabitList(habitListData.data))
+            dispatch(habitsActions.setHabitList(habitListData.data === null?{}:habitListData.data))
             // Set target date's data
             for(let habit in habitListData.data) {
                 if(habitListData.data[habit].weekdays[targetWeekday]) {
@@ -48,7 +48,7 @@ function Habits(props) {
                 })
             }
             else {
-                dispatch(habitsActions.setHabitData(targetDateData.data))
+                dispatch(habitsActions.setHabitData(targetDateData.data=== null?{}:targetDateData.data))
             }
         } catch(err) {
             alert(err)

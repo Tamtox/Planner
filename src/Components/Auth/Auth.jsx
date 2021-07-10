@@ -93,15 +93,6 @@ function Auth(props) {
                     alert(err.response.data.error.message)
                 })
             } 
-            // Load data on signin
-            else {
-                axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${res.data.localId}/appData.json?auth=${res.data.idToken}`)
-                .then(res=>{
-                    dispatch(toDoActions.setToDoList(res.data.toDo.toDoList));
-                }).catch(err=>{
-                    alert(err.response.data.error.message)
-                })
-            }
         }).catch(err => {
             setLoading(false)
             alert(err.response.data.error.message)

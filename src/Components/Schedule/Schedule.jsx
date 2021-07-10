@@ -31,7 +31,9 @@ function Schedule() {
         axios.get(`https://planner-1487f-default-rtdb.europe-west1.firebasedatabase.app/users/${userId}/appData/schedule.json?auth=${token}`)
         .then(res=>{
             setLoading(false)
-            dispatch(scheduleActions.setSchedule(res.data))
+            if(res.data !== null) {
+                dispatch(scheduleActions.setSchedule(res.data))
+            }
         }).catch(err=>{
             console.log(err)
         })
@@ -47,9 +49,9 @@ function Schedule() {
         })
     }
     // Sort tasks by time and filter by active weekdays
-    const scheduleArr = sortAndFilter(Object.values(schedule),weekday);
+    const scheduleArr = schedule ===null?[null]:sortAndFilter(Object.values(schedule),weekday);
     useEffect(() => {
-        if(schedule.test) {
+        if(Object.keys(schedule).length === 0) {
             fetchScheduleData();
         }
     }, [])
@@ -69,6 +71,7 @@ function Schedule() {
             </div>
             {loading?<Loading/>:<div id='scheduleTaskList'>
                 {scheduleArr.map((item,index)=>{
+                    if(item === null) return null
                     return (
                         <ScheduleItem key={index} title={item.title} time={item.time} delete={()=>deleteScheduleTask(item.title)} />
                     )
