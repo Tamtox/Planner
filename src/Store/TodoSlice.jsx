@@ -36,6 +36,9 @@ const toDoSlice = createSlice({
                 }
                 return item
             })
+        },
+        clearToDoList(state) {
+            state.toDoList = []
         }
     }
 });

@@ -12,12 +12,12 @@ function Auth(props) {
     // Toggle sign in/sign up
     const [login, setLogin] = useState(true);
     const [loading, setLoading] = useState(false);
-    const toggleAuth = () => {setLogin(!login)}
     // Authentication
     const [emailRef,passwordRef,repeatRef] = [useRef(),useRef(),useRef()];
     const authFormSubmit = (event) => {
         event.preventDefault();
         const [emailInput,passwordInput] = [emailRef.current.value,passwordRef.current.value];
+        // Check if passwors match
         if(!login) {
             if(passwordInput !== repeatRef.current.value) {
                 alert('Passwords do not match!')
@@ -70,7 +70,7 @@ function Auth(props) {
                     {!login&& <input type="password" id='repeatPassword'  className='authInput focus'  ref={repeatRef} placeholder='Repeat Password' required/>}
                     {loading?<LoadingHorizontal />:<button id='authButton' className='hover button'>{login?'Sign In':'Sign Up'}</button>}
                 </form>
-                <button id='authSwitch' className='hoverFilter' onClick={toggleAuth}>{login?"Don't have an account?":'Use existing account'}</button>
+                <button id='authSwitch' className='hoverFilter' onClick={()=>setLogin(!login)}>{login?"Don't have an account?":'Use existing account'}</button>
             </div>
         </section>
     )

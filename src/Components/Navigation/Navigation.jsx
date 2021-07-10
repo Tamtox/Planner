@@ -2,7 +2,7 @@ import './Navigation.scss';
 import { useState } from 'react';
 import { NavLink,Link } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
-import { authActions } from '../../Store/Store';
+import { authActions,toDoActions,scheduleActions,habitsActions,journalActions } from '../../Store/Store';
 import { useMediaQuery } from 'react-responsive';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,11 @@ function Navigation(props) {
     const isLoggedIn = !!useSelector(state=>state.authSlice.token);
     const dispatch = useDispatch();
     function logout() {
-        dispatch(authActions.logout())
+        dispatch(authActions.logout());
+        dispatch(toDoActions.clearToDoList());
+        dispatch(scheduleActions.clearSchedule());
+        dispatch(habitsActions.clearHabitData());
+        dispatch(journalActions.clearEntry());
     }   
     // Set different navlinks based on window width
     let navLinks 

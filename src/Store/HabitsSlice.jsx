@@ -28,6 +28,10 @@ const habitsSlice = createSlice({
         },
         setHabitData(state,action) {
             state.entry = action.payload
+        },
+        clearHabitData(state) {
+            state.entry = {}
+            state.habitsList = {}
         }
     }
 });

@@ -20,6 +20,9 @@ const scheduleSlice = createSlice({
         },
         setSchedule(state,action) {
             state.schedule = action.payload
+        },
+        clearSchedule(state) {
+            state.schedule = {}
         }
     }
 });

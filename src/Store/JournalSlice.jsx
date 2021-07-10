@@ -10,6 +10,10 @@ const journalSlice = createSlice({
         setEntry(state,action) {
             state.date = action.payload.date
             state.entry = action.payload.entry
+        },
+        clearEntry(state) {
+            state.date = null
+            state.entry = null
         }
     }
 });

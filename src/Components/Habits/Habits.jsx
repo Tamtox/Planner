@@ -58,7 +58,7 @@ function Habits(props) {
     // Load selected date's data
     function loadSelectedData(date) {
         setStartDate(date)
-        loadHabitsData(date[0])
+        loadHabitsData(date)
     }
     // Delete habit
     function deleteHabit(habitName) {
@@ -72,9 +72,6 @@ function Habits(props) {
     }
     // Change habit status
     function changeHabitStatus(date,habitName,status) {
-        if(Array.isArray(date)) {
-            date = date[0]
-        }
         const [targetYear,targetMonth,targetDate] = [date.getFullYear(),date.getMonth()+1,date.getDate()];
         dispatch(habitsActions.changeHabitStatus(habitName.toLowerCase()))
         axios.request({
@@ -96,7 +93,7 @@ function Habits(props) {
                 <Flatpickr 
                     id="habitsDateSelection" className="hover datePick" 
                     options={{dateFormat:'d-m-Y ',enableTime:false,disableMobile:true,maxDate:new Date()}}  
-                    value={startDate} onChange={date => {loadSelectedData(date)}}
+                    value={startDate} onChange={date => {loadSelectedData(date[0])}}
                 />
                 <button id='habitsViewToggle' className='hover button' onClick={()=>setIsHabitsList(!isHabitsList)}>
                     {isHabitsList?'Habits List':"Today's Habits"}
