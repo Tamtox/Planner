@@ -16,7 +16,7 @@ function Navigation(props) {
     const dispatch = useDispatch();
     function logout() {
         dispatch(authActions.logout())
-    }
+    }   
     // Set different navlinks based on window width
     let navLinks 
     const windowMoreThan = useMediaQuery({

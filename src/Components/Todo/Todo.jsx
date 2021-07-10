@@ -66,9 +66,7 @@ function Todo(props) {
         setLoading(false)
     }
     useEffect(()=>{
-        if(toDoList[0].test) {
-            loadTodoData();
-        }
+        loadTodoData();
     },[])
     return (
         <section id="toDo">
