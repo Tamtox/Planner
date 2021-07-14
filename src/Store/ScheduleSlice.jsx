@@ -1,11 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
-
 const initialScheduleState = {
     schedule:{
         
     }
 }
-
 const scheduleSlice = createSlice({
     name:'schedule',
     initialState:initialScheduleState,
